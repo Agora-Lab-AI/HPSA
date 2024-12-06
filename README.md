@@ -52,6 +52,25 @@ if __name__ == "__main__":
 ```
 
 
+## Output
+
+```txt
+Generating test dataset...
+Initializing HPSA...
+Indexing documents...
+Indexing completed in 183.26 seconds
+Generating test queries...
+Running benchmark...
+
+Benchmark Results:
+Queries per second: 3973.11
+Mean response time: 0.25ms
+95th percentile response time: 0.47ms
+99th percentile response time: 5.94ms
+
+```
+
+
 
 ## Abstract
 
