@@ -3,6 +3,56 @@
 
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20our%20server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/agora-999382051935506503) [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@kyegomez3242) [![Connect on LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kye-g-38759a207/) [![Follow on X.com](https://img.shields.io/badge/X.com-Follow-1DA1F2?style=for-the-badge&logo=x&logoColor=white)](https://x.com/kyegomezb)
 
+
+
+## Usage
+
+```python
+
+
+def main():
+    """Main benchmark execution"""
+    
+    # Test parameters
+    NUM_DOCUMENTS = 50000
+    VOCAB_SIZE = 100_000
+    DOC_LENGTH = 100
+    NUM_QUERIES = 10_000
+    TERMS_PER_QUERY = 3
+    
+    print("Generating test dataset...")
+    documents = Benchmark.generate_dataset(NUM_DOCUMENTS, VOCAB_SIZE, DOC_LENGTH)
+    
+    print("Initializing HPSA...")
+    hpsa = HPSA(NUM_DOCUMENTS)
+    
+    print("Indexing documents...")
+    start_time = time.time()
+    for doc in documents:
+        hpsa.index_document(doc)
+    index_time = time.time() - start_time
+    print(f"Indexing completed in {index_time:.2f} seconds")
+    
+    print("Generating test queries...")
+    queries = Benchmark.generate_queries(NUM_QUERIES, VOCAB_SIZE, TERMS_PER_QUERY)
+    
+    print("Running benchmark...")
+    results = Benchmark.run_benchmark(hpsa, queries)
+    
+    print("\nBenchmark Results:")
+    print(f"Queries per second: {results['queries_per_second']:.2f}")
+    print(f"Mean response time: {results['mean_response_time']*1000:.2f}ms")
+    print(f"95th percentile response time: {results['p95_response_time']*1000:.2f}ms")
+    print(f"99th percentile response time: {results['p99_response_time']*1000:.2f}ms")
+
+if __name__ == "__main__":
+    main()
+
+
+```
+
+
+
 ## Abstract
 
 This paper introduces a theoretical framework for a revolutionary search algorithm that achieves unprecedented speed through a combination of probabilistic data structures, intelligent data partitioning, and a novel hierarchical index structure. Our proposed architecture, HPSA (Hierarchical Probabilistic Search Architecture), achieves theoretical search times approaching O(log log n) in optimal conditions by leveraging advanced probabilistic filters and a new approach to data organization. We present both the theoretical foundation and a detailed implementation framework for this new approach to information retrieval.

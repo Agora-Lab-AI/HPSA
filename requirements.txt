@@ -1,3 +1,10 @@
-torch
-zetascale
-swarms
+numpy
+pandas
+seaborn
+keras
+nltk
+spacy
+requests
+mmh3
+xxhash
+loguru
